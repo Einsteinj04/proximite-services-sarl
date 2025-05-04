@@ -8,6 +8,7 @@ const WebPagesLayout = async ({ children }) => {
 		<div className=''>
 			<Header />
 			{children}
+			{/* <div className='h-[1030px] bg-red-300'>Hi bitch</div> */}
             <Footer/>
 			{/* <Footer socialHandles={contactInformation?.socialHandles} /> */}
 		</div>
