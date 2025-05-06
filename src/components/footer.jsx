@@ -21,10 +21,10 @@ const Footer = () => {
   {/* <div className="border-red-500 border-2 h-full">Footer */}
       <div className=''>
       <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl`}>
-                    <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='sm:max-w-[150px] sm:max-h-48 max-h-16 max-w-[80px]' />
+                    <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='max-w-[150px] max-h-48 ' />
         </Link>
       </div>
-      <p className='sm:text-2xl text-[14px] max-w-3xl text-center text-slate-300'>Nullam ultrices tortor non diam ullamcorper auctor. In urna tellus, auctor sit amet est ut, scelerisque volutpat diam.</p>
+      <p className='sm:text-2xl text-xl max-w-3xl text-center text-slate-300'>Nullam ultrices tortor non diam ullamcorper auctor. In urna tellus, auctor sit amet est ut, scelerisque volutpat diam.</p>
       <div className='flex gap-x-10 text-5xl '>
         <FacebookRoundedIcon sx={{ fontSize: {xs:40,md:40} }}/>
         <WhatsAppIcon sx={{ fontSize: {xs:40,md:40} }}/>

@@ -82,7 +82,7 @@ const Header = () => {
   return (
     <>
       {/* Main Navigation Bar - Always Visible */}
-      <nav className={`absolute sm:top-10 top-0 w-[80%] transition-all mx-auto duration-300 z-50 px-10 py-2 shadow-md left-1/2 -translate-x-1/2`}>
+      <nav className={`absolute sm:top-10 top-0 sm:w-[80%] w-[90%] transition-all mx-auto duration-300 z-50 px-10 py-2 shadow-md left-1/2 -translate-x-1/2`}>
         {/* Your existing header content */}
         <div className='w-full md:flex items-center hidden mb-6 p-6'>
           {/* ... your top info bar ... */}
@@ -107,7 +107,7 @@ const Header = () => {
           {/* Logo */}
           <div className='w-full flex max-w-40 justify-start items-center text-[#fff]'>
             <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl ${isScrolled ? 'text-slate-600' : ''}`}>
-              <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:max-h-28 max-h-16' />
+              <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:max-h-20 max-h-20' />
             </Link>
           </div>
 

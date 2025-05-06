@@ -32,9 +32,6 @@ const Card = ({icon, service, amount, image}) => {
             <span className='text-[#0065E7] h-full text-[50px] flex items-start'>
               {icon}
             </span>
-            {/* <span className='text-[#0065E7] border'>
-              {icon}
-            </span>  */}
         </div>
         
 
