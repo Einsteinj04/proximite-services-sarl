@@ -70,7 +70,7 @@ const HeroSection = () => {
     <div className='absolute top-0 right-0 bottom-0 left-0 h-full min-h-[96vh] z-[3] inset-0 bg-[linear-gradient(#00000080,#00000080)]'></div>
     <section className='z-10  flex flex-col justify-center relative  w-full h-[96vh]  text-white  items-center '>
       <div className=' relative sm:top-[10%]  flex  gap-y-4 flex-col items-center'>
-              <div className='sm:text-6xl text-5xl text-center'>Let's Make Your Best Trip Ever</div>
+              <div className='sm:text-6xl text-5xl text-center font-medium'>Let's Make Your Best Trip Ever</div>
               <p className='text-slate-300 sm:text-[20px] ; max-w-2xl text-center  mx-auto  text-[18px]'>Plan and book your perfect trip with expert advice. travel tips, destination information and inspiration from us</p>
               <div className='w-full flex justify-center h-[60px] items-center'>
               <Link className='font-metro-sans ' href={APP_ROUTES.CONTACT}>

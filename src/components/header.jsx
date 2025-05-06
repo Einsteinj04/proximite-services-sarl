@@ -88,9 +88,9 @@ const Header = () => {
           {/* ... your top info bar ... */}
           <div className='flex gap-x-6 w-full text-[14px]'>
            {iconInfo.map((details, index) => (
-                   <div className='flex gap-x-1 justify-center items-center text-white' key={index}>
-                     <p>{details.icon}</p>
-                     <p className=''>{details.info}</p>
+                   <div className='flex gap-x-1 text-white ' key={index}>
+                     <p className=' h-full flex items-center'>{details.icon}</p>
+                     <p className=' h-full flex items-center'>{details.info}</p>
                    </div>
                ))}
            </div>
@@ -103,11 +103,11 @@ const Header = () => {
         </div>
         <div className='h-4 w-full md:block hidden'></div>
 
-        <div className='flex items-center justify-between max-w-full mx-auto gap-x-20 bg-white'>
+        <div className='flex items-center justify-between max-w-full mx-auto gap-x-20 bg-white max-h-22'>
           {/* Logo */}
           <div className='w-full flex max-w-40 justify-start items-center text-[#fff]'>
-            <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl ${isScrolled ? 'text-slate-600' : ''}`}>
-              <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:max-h-20 max-h-20' />
+            <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl h-full overflow-hidden ${isScrolled ? 'text-slate-600' : ''}`}>
+              <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:h-28 h-22 object-cover overflow-hidden' />
             </Link>
           </div>
 
