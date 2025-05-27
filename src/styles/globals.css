@@ -121,10 +121,10 @@ input[type='number'] {
 	}
 }
 
-p {
+/* p {
 	margin-top: 0;
 	margin-bottom: 1rem;
-}
+} */
 
 h1,
 h2,
@@ -226,6 +226,29 @@ hr {
 	--muted: 210 40% 96.1%;
 	--accent: 269 78% 88%;
 }
-
+/* Custom bullet pagination */
+.swiper-pagination-bullet {
+	width: 10px;
+	height: 10px;
+	background: #e5e7eb; /* Ash color */
+	opacity: 1;
+	transition: all 0.3s ease;
+	margin: 0 6px !important;
+  }
+  
+  .swiper-pagination-bullet-active {
+	width: 30px;
+	background: var(--primary); /* Your primary color */
+	border-radius: 8px;
+  }
+  
+  /* Add to globals.css */
+.swiper-pagination-bullet {
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .swiper-pagination-bullet-active {
+	transform: scaleY(1.2);
+  }
 
 

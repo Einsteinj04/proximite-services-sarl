@@ -1,13 +1,132 @@
 'use client'
-import React from 'react'
+import React, {useRef} from 'react'
 import { APP_ROUTES, ASSETS } from "@/config";
-import { Image, Button, BulletPoints, Card, BenefitCards } from "@/components";
+import { Image, Button, BulletPoints, Card, BenefitCards, PremiumTourCarousel } from "@/components";
 import Link from 'next/link';
 import { ArrowForwardIos, FlightTakeoff, DirectionsCar, House, PriceChange, EnhancedEncryption, Public, People} from "@mui/icons-material";
+import { FiArrowRight, FiArrowLeft, FiMapPin, FiClock, FiStar } from 'react-icons/fi';
 import Masonry from '@mui/lab/Masonry';
 import { Box, Typography } from '@mui/material';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import { motion } from 'framer-motion'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
-
+const luxuryTours = [
+  {
+    id: 1,
+    title: "Luxury Maldives Overwater Bungalow",
+    location: "Maldives",
+    price: 3200,
+    originalPrice: 3800,
+    discount: 15,
+    duration: 7,
+    rating: 4.9,
+    isBestSeller: true,
+    type: "beach"
+  },
+  {
+    id: 2,
+    title: "Alpine Retreat in Swiss Alps",
+    location: "Switzerland",
+    price: 2800,
+    originalPrice: 3200,
+    discount: 12,
+    duration: 5,
+    rating: 4.8,
+    isBestSeller: false,
+    type: "mountain"
+  },
+  {
+    id: 3,
+    title: "Romantic Paris City Escape",
+    location: "Paris, France",
+    price: 2100,
+    originalPrice: 2500,
+    discount: 16,
+      duration: 4,
+      rating: 4.7,
+      isBestSeller: true,
+      type: "city"
+    },
+{
+      id: 4,
+      title: "Romantic Paris City Escape",
+      location: "Paris, France",
+      price: 2100,
+      originalPrice: 2500,
+      discount: 16,
+        duration: 4,
+        rating: 4.7,
+        isBestSeller: true,
+        type: "city"
+      },
+      {
+        id: 5,
+        title: "Romantic Paris City Escape",
+        location: "Paris, France",
+        price: 2100,
+        originalPrice: 2500,
+        discount: 16,
+          duration: 4,
+          rating: 4.7,
+          isBestSeller: true,
+          type: "city"
+        },
+  ]
+// const optionsCard = [
+//   {
+//     id: 1,
+//     image: ASSETS.GREECE,
+//     title: 'Beach Getaway',
+//     desc: 'Luxury beachfront villas with private pools'
+//   },
+//   {
+//     id: 2,
+//     image: ASSETS.CHINA,
+//     title: 'Mountain Retreat',
+//     desc: 'Cozy cabins with stunning alpine views'
+//   },{
+//     id: 3,
+//     image: ASSETS.GREECE,
+//     title: 'Beach Getaway',
+//     desc: 'Luxury beachfront villas with private pools'
+//   },
+//   {
+//     id: 4,
+//     image: ASSETS.CHINA,
+//     title: 'Mountain Retreat',
+//     desc: 'Cozy cabins with stunning alpine views'
+//   },
+//   {
+//     id: 5,
+//     image: ASSETS.GREECE,
+//     title: 'Beach Getaway',
+//     desc: 'Luxury beachfront villas with private pools'
+//   },
+//   {
+//     id: 6,
+//     image: ASSETS.GREECE,
+//     title: 'Beach Getaway',
+//     desc: 'Luxury beachfront villas with private pools'
+//   },
+//    {
+//     id: 7,
+//     image: ASSETS.GREECE,
+//     title: 'Beach Getaway',
+//     desc: 'Luxury beachfront villas with private pools'
+//   },
+//    {
+//     id: 8,
+//     image: ASSETS.GREECE,
+//     title: 'Beach Getaway',
+//     desc: 'Luxury beachfront villas with private pools'
+//   },
+  
+//   // Add 4+ more items for smooth looping
+// ];
 const imageItems = [
   { id: 1, img: ASSETS.PARIS, title : 'Paris', height: '500px' },  // Wider image
   { id: 2, img: ASSETS.GREECE, title: 'Greece', height: '250px' }, // Taller image
@@ -210,6 +329,120 @@ const Benefits = () => {
     </section>
   )
 }
+const Carousel = () => {
+  return (
+    <section className="py-16 px-4 section-x section-y mx-auto">
+      <div className="text-center mb-12">
+        <span className="text-sm uppercase tracking-widest text-amber-500 font-medium">Premium Getaways</span>
+        {/* <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+          Discover Your Dream Destination
+        </h2> */}
+         <div className='section-y w-full flex justify-center'>
+          <BulletPoints feature={'Discover Your Dream Destination'} position='center'/>
+        </div>
+        
+      </div>
+      <PremiumTourCarousel tours={luxuryTours} />
+    </section>
+  )
+}
+
+// const Carousel = () => {
+//   const swiperRef = useRef(null)
+//   return (
+//     <div className="relative py-12 px-4 md:pl-8 md:pr-32 section-x section-y"> {/* 👈 Right padding increased */}
+//     <BulletPoints feature={'Flights'} position={'center'}/>
+//     <div className='section-y'></div>
+//       <Swiper
+//         loop={true}
+//         pagination={{
+//           clickable: true,
+//           el: '.custom-pagination',
+//           dynamicBullets: false,
+//           bulletClass: 'swiper-pagination-bullet', // Required for custom styling
+//           bulletActiveClass: 'swiper-pagination-bullet-active'
+//         }}
+//         modules={[Navigation, Pagination, Autoplay]} // Ensure Pagination is included
+//         slidesPerView={'auto'}
+//         loopAdditionalSlides={1}
+//         spaceBetween={24}
+//         centeredSlides={false} // 👈 Disable centering
+//         navigation={{
+//           nextEl: '.custom-next',
+//           prevEl: '.custom-prev',
+//         }}
+//         onSwiper={(swiper) => {
+//                     swiperRef.current = swiper;
+//                   }}
+//         breakpoints={{
+//           0: {
+//             slidesPerView: 1,
+//             spaceBetween: 16,
+//             centeredSlides: true // 👈 Center on mobile
+//           },
+//           768: {
+//             slidesPerView: 2.5, // 👈 Shows 1 full + 20% of next
+//             spaceBetween: 24,
+//             centeredSlides: false
+//           },
+//           1024: {
+//             slidesPerView: 2.7, // 👈 Shows 1 full + 80% of next
+//           }
+//         }}
+//         className="" // 👈 Allows partial cards to show
+//       >
+//         {optionsCard.map((card) => (
+//           <SwiperSlide 
+//             key={card.id} 
+//             // className="!w-[85vw] md:!w-[45vw] lg:!w-[35vw]" // 👈 Responsive widths
+//           >
+//             {/* Your card content */}
+//             <motion.div 
+//               whileHover={{ y: -8 }}
+//               // className="bg-white rounded-xl shadow-lg overflow-hidden w-full h-[400px] flex flex-col justify-center"
+//               className='bg-white shadow-lg h-[400px] flex flex-col overflow-hidden justify-center border-slate-400 border-1 p-4'
+//             >
+//               <div className="relative h-48 w-full bg-slate-500 max-w-[768px]">
+//                 {/* <p className='text-white '>{card.id}</p> */}
+//                 <Image
+//                   src={card.image}
+//                   alt={card.title}
+//                   className="object-cover h-48 w-full"
+//                   // sizes="(max-width: 768px) 100vw, 50vw"
+//                 />
+//               </div>
+//               <div className="p-6 flex-1 flex flex-col"><h3 className="text-xl font-bold text-gray-900">{card.title}</h3>
+//                 <p className="text-gray-600 mt-2 flex-1">{card.description}</p>
+//                 {/* <button className="mt-4 px-4 py-2 bg-primary text-white rounded-lg self-start hover:bg-primary-dark transition-colors text-red-400">
+//                   Book Now
+//                 </button> */}
+//               </div>
+//             </motion.div>
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+
+//       {/* Right-only navigation */}
+//       {/* <button className="custom-next absolute right-8 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-50 transition-colors"> */}
+//       <button 
+//         onClick={() => swiperRef.current?.slidePrev()} // 👈 Now works in JS
+//         className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-50 transition-colors"
+//       >
+//         ←
+//       </button>
+//       <button 
+//         onClick={() => swiperRef.current?.slideNext()}
+//         className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-50 transition-colors"
+//       >
+//         →
+//       </button>
+
+//       {/* Mobile dots */}
+//       <div className='h-8  flex justify-center items-center'></div>
+//       <div className="custom-pagination hidden" />
+//     </div>
+//   )
+// }
 
 
 const Client = () => {
@@ -217,6 +450,7 @@ const Client = () => {
     <HeroSection/>
     <OurOffers/>
     <Benefits/>
+    <Carousel/>
   </div>
   )
 }
