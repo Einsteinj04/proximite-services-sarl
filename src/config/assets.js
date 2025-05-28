@@ -9,6 +9,14 @@ import LONDON from '@/assets/images/london.jpg';
 import PARIS from '@/assets/images/paris.jpg';
 import GREECE from '@/assets/images/greece.jpg';
 
+
+import SWITZERLAND from '@/assets/images/premium_images/switzerland.jpg';
+import FRANCE from '@/assets/images/premium_images/france.jpg';
+import MALDIVES from '@/assets/images/premium_images/maldives.jpg';
+import TOKYO from '@/assets/images/premium_images/tokyo.jpg';
+import TANZANIA from '@/assets/images/premium_images/tanzania.jpg';
+import BALI from '@/assets/images/premium_images/bali.jpg';
+import ROME from '@/assets/images/premium_images/rome.jpg';
 export {
     LOGO,
     HOME_HERO,
@@ -19,5 +27,12 @@ export {
     PARIS,
     GREECE,
     CHINA,
-    LONDON
+    LONDON,
+    SWITZERLAND,
+    FRANCE,
+    MALDIVES,
+    TOKYO,
+    TANZANIA,
+    BALI,
+    ROME
 }
