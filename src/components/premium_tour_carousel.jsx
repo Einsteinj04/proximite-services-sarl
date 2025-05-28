@@ -452,26 +452,28 @@ const PremiumTourCarousel = () => {
       </Box>
       
       {/* Scroll Indicator (Mobile) */}
-      <Box sx={{ 
-        display: 'flex',
-        justifyContent: 'center',
-        mt: 2,
-        display: { md: 'none' }
-      }}>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          {tours.map((_, index) => (
-            <Box 
-              key={index} 
-              sx={{ 
-                width: 8, 
-                height: 8, 
-                borderRadius: '50%',
-                bgcolor: 'grey.300'
-              }}
-            />
-          ))}
-        </Box>
-      </Box>
+      <div className='flex justify-center'>
+            <Box sx={{ 
+                 display: 'flex',
+                 justifyContent: 'center',
+                 mt: 2,
+                 display: { md: 'none' }
+             }}>
+                 <Box sx={{ display: 'flex', gap: 1 }}>
+                 {tours.map((_, index) => (
+                     <Box 
+                     key={index} 
+                     sx={{ 
+                         width: 8, 
+                         height: 8, 
+                         borderRadius: '50%',
+                         bgcolor: 'grey.300'
+                     }}
+                     />
+                 ))}
+                 </Box>
+             </Box>
+       </div>
     </Box>
   );
 };
