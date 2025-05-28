@@ -68,7 +68,7 @@ const Footer = () => {
               }}>
               <Link href={APP_ROUTES.HOME}>
                 <Image 
-                  alt="Mom's Travel Agency" 
+                  alt="Proximite Services Travel Agency" 
                   src={ASSETS.LOGO} 
                   className='max-w-[200px]'
                 />
@@ -78,8 +78,6 @@ const Footer = () => {
               mb: 3, 
               color: 'rgba(255,255,255,0.8)',
               lineHeight: 1.7,
-              // border:'2px solid red',
-              // fontSize:'20px',
               width:'80%'
             }}>
               Creating unforgettable travel experiences since 2010. We specialize in personalized vacations that turn dreams into reality.
