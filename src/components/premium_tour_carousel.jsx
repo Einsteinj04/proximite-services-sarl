@@ -6,13 +6,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import {Image} from '@/components';
 import { APP_ROUTES, ASSETS } from "@/config";
 
-// Replace these with your actual image imports
-// import maldivesImage from '@/public/images/maldives.jpg';
-// import parisImage from '@/public/images/paris.jpg';
-// import tokyoImage from '@/public/images/tokyo.jpg';
-// import safariImage from '@/public/images/safari.jpg';
-// import baliImage from '@/public/images/bali.jpg';
-// import romeImage from '@/public/images/rome.jpg';
+
 
 const tours = [
   {
@@ -106,12 +100,18 @@ const PremiumTourCarousel = () => {
   const [showNav, setShowNav] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const checkScrollPosition = () => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+
+      const cardWidth = 300;
+      const scrollPosition = scrollLeft + cardWidth / 2;
+      const newActiveIndex = Math.floor(scrollPosition / cardWidth);
+      setActiveIndex(Math.min(newActiveIndex, tours.length));
     }
   };
 
@@ -452,26 +452,29 @@ const PremiumTourCarousel = () => {
       </Box>
       
       {/* Scroll Indicator (Mobile) */}
-      <Box sx={{ 
-        display: 'flex',
-        justifyContent: 'center',
-        mt: 2,
-        display: { md: 'none' }
-      }}>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          {tours.map((_, index) => (
-            <Box 
-              key={index} 
-              sx={{ 
-                width: 8, 
-                height: 8, 
-                borderRadius: '50%',
-                bgcolor: 'grey.300'
-              }}
-            />
-          ))}
-        </Box>
-      </Box>
+       <div className='flex justify-center'>
+             <Box sx={{ 
+                 display: 'flex',
+                 justifyContent: 'center',
+                 mt: 2,
+                 display: { md: 'none' }
+             }}>
+                 <Box sx={{ display: 'flex', gap: 1 }}>
+                 {tours.map((_, index) => (
+                     <Box 
+                     key={index} 
+                     sx={{ 
+                         width: 8, 
+                         height: 8, 
+                         borderRadius: '50%',
+                         bgcolor: index === activeIndex ? 'primary.main' : 'grey.300', // Active state
+                        transition: 'background-color 0.3s'
+                     }}
+                     />
+                 ))}
+                 </Box>
+             </Box>
+       </div>
     </Box>
   );
 };
