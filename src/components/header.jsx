@@ -82,13 +82,14 @@ const Header = () => {
   return (
     <>
       {/* Main Navigation Bar - Always Visible */}
-      <nav className={`absolute sm:top-10 top-0 sm:w-[80%] w-[100%] transition-all mx-auto duration-300 z-50 px-10 py-2 shadow-md left-1/2 -translate-x-1/2`}>
+      <nav className={`fixed top-0 sm:w-[80%] w-[100%] transition-all mx-auto duration-300 z-50 px-10 py-2 shadow-md left-1/2 -translate-x-1/2 ${isScrolled ? 'bg-white shadow-md' : ''} 
+          ${hideNavbar ? '-translate-y-full' : 'translate-y-0'}`}>
         {/* Your existing header content */}
         <div className='w-full md:flex items-center hidden mb-6 p-6'>
           {/* ... your top info bar ... */}
           <div className='flex gap-x-6 w-full text-[14px]'>
            {iconInfo.map((details, index) => (
-                   <div className='flex gap-x-1 text-white ' key={index}>
+                   <div className='flex gap-x-1 text-slate-400 ' key={index}>
                      <p className=' h-full flex items-center'>{details.icon}</p>
                      <p className=' h-full flex items-center'>{details.info}</p>
                    </div>
