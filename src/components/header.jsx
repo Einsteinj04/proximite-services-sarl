@@ -48,13 +48,11 @@ const Header = () => {
   });
 
   const toggleMobileMenu = () => {
-    console.log('hi')
     setIsMobileMenuOpen(!isMobileMenuOpen);
     document.body.classList.toggle('overflow-hidden');
   };
 
   const closeMobileMenu = () => {
-    console.log('hi')
     setIsMobileMenuOpen(false);
     document.body.classList.remove('overflow-hidden');
   };
@@ -109,7 +107,7 @@ const Header = () => {
 
         <div className='flex items-center justify-between max-w-full mx-auto gap-x-20 bg-white max-h-22 overflow-hidden section-x'>
           {/* Logo */}
-          <div className='w-full flex max-w-40 justify-center items-center text-[#fff]'>
+          <div className='w-full flex max-w-40 sm:justify-center justify-start items-center text-[#fff]'>
             <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl h-full ${isScrolled ? 'text-slate-600' : ''}`}>
               <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:h-32 h-22 object-cover ' />
             </Link>
@@ -144,7 +142,7 @@ const Header = () => {
           </IconButton>
         </div>
 
-        <div className='h-full flex flex-col justify-center items-center gap-6'>
+        <div className='h-full flex flex-col justify-start items-center gap-6'>
           {desktopNavigations.map((navigation, index) => (
             <NavigationLink 
               key={index} 

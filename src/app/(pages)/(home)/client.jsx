@@ -193,7 +193,7 @@ const HeroSection = () => {
               <p className='text-slate-300 sm:text-[20px] ; max-w-2xl text-center  mx-auto  text-[18px]'>Plan and book your perfect trip with expert advice. travel tips, destination information and inspiration from us</p>
               <div className='w-full flex justify-center h-[60px] items-center'>
               <Link className='font-metro-sans ' href={APP_ROUTES.CONTACT}>
-                            <Button color='#fff' background='var(--primary)' className={`font-[700] font-metro-sans text-xs flex sm:gap-x-4 gap-x-2 max-w-[450px] mx-auto px-8`}>
+                            <Button color='#fff' background='var(--primary)' className={`font-[700] font-metro-sans text-xs flex sm:gap-x-4 gap-x-2 max-w-[450px] mx-auto px-`}>
                               <div className='text-xl '>BOOK NOW</div> <ArrowForwardIos/>
                             </Button>
                           </Link>
@@ -220,7 +220,7 @@ const OurOffers = () =>{
 
 
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto  py-12">
       {/* Mobile: Single column, Desktop: 3 cards with perfect spacing */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {
