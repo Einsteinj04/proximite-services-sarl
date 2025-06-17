@@ -12,6 +12,7 @@
 @import "tailwindcss/utilities" layer(utilities);
 
 
+
 /* ALL CSS ANIMATIONS KEYFRAMES ARE DEFINED HERE */
 /* @import url(./keyframes.css); */
 
@@ -21,8 +22,8 @@
 
 /* @import url(./nprogress.css); */
 
-
-* {
+@layer base{
+	* {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
@@ -250,5 +251,8 @@ hr {
   .swiper-pagination-bullet-active {
 	transform: scaleY(1.2);
   }
+}
+
+
 
 

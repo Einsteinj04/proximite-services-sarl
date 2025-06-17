@@ -193,7 +193,7 @@ const HeroSection = () => {
               <p className='text-slate-300 sm:text-[20px] ; max-w-2xl text-center  mx-auto  text-[18px]'>Plan and book your perfect trip with expert advice. travel tips, destination information and inspiration from us</p>
               <div className='w-full flex justify-center h-[60px] items-center'>
               <Link className='font-metro-sans ' href={APP_ROUTES.CONTACT}>
-                            <Button color='#fff' background='var(--primary)' className={`font-[700] font-metro-sans text-xs flex sm:gap-x-4 gap-x-2 max-w-[450px] mx-auto px-4`}>
+                            <Button color='#fff' background='var(--primary)' className={`font-[700] font-metro-sans text-xs flex sm:gap-x-4 gap-x-2 max-w-[450px] mx-auto px-8`}>
                               <div className='text-xl '>BOOK NOW</div> <ArrowForwardIos/>
                             </Button>
                           </Link>

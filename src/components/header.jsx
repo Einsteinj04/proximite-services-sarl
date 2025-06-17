@@ -48,11 +48,13 @@ const Header = () => {
   });
 
   const toggleMobileMenu = () => {
+    console.log('hi')
     setIsMobileMenuOpen(!isMobileMenuOpen);
     document.body.classList.toggle('overflow-hidden');
   };
 
   const closeMobileMenu = () => {
+    console.log('hi')
     setIsMobileMenuOpen(false);
     document.body.classList.remove('overflow-hidden');
   };
@@ -82,12 +84,13 @@ const Header = () => {
   return (
     <>
       {/* Main Navigation Bar - Always Visible */}
-      <nav className={`fixed top-0 sm:w-[80%] w-[100%] transition-all mx-auto duration-300 z-50 px-10 py-2 shadow-md left-1/2 -translate-x-1/2 ${isScrolled ? 'bg-white shadow-md' : ''} 
+      {!isMobileMenuOpen && (
+        <nav className={`fixed top-0 sm:w-[100%] w-[100%] transition-all mx-auto duration-300 z-[50] shadow-md left-1/2 -translate-x-1/2  ${isScrolled ? 'bg-red-500 shadow-md' : ''} 
           ${hideNavbar ? '-translate-y-full' : 'translate-y-0'}`}>
         {/* Your existing header content */}
-        <div className='w-full md:flex items-center hidden mb-6 p-6'>
+        <div className='w-full md:flex items-center hidden p-4 bg-[#1d293d]'>
           {/* ... your top info bar ... */}
-          <div className='flex gap-x-6 w-full text-[14px]'>
+          <div className='flex gap-x-6 w-full text-[14px] '>
            {iconInfo.map((details, index) => (
                    <div className='flex gap-x-1 text-slate-400 ' key={index}>
                      <p className=' h-full flex items-center'>{details.icon}</p>
@@ -102,18 +105,18 @@ const Header = () => {
              <TwitterIcon/>
            </div>
         </div>
-        <div className='h-4 w-full md:block hidden'></div>
+        {/* <div className='h-4 w-full md:block hidden'></div> */}
 
-        <div className='flex items-center justify-between max-w-full mx-auto gap-x-20 bg-white max-h-22'>
+        <div className='flex items-center justify-between max-w-full mx-auto gap-x-20 bg-white max-h-22 overflow-hidden section-x'>
           {/* Logo */}
-          <div className='w-full flex max-w-40 justify-start items-center text-[#fff]'>
-            <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl h-full overflow-hidden ${isScrolled ? 'text-slate-600' : ''}`}>
-              <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:h-28 h-22 object-cover overflow-hidden' />
+          <div className='w-full flex max-w-40 justify-center items-center text-[#fff]'>
+            <Link href={APP_ROUTES.HOME} className={`text-primary font-[700] font-metro-sans uppercase text-2xl h-full ${isScrolled ? 'text-slate-600' : ''}`}>
+              <Image alt='Welcome to BuildingPlans' src={ASSETS.LOGO} className='w-full sm:h-32 h-22 object-cover ' />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className='hidden justify-around w-full md:flex'>
+          <div className='hidden justify-around w-full md:flex '>
             {desktopNavigations.map((navigation, index) => (
               <NavigationLink key={index} navigation={navigation} isScrolled={isScrolled} />
             ))}
@@ -121,15 +124,17 @@ const Header = () => {
 
           {/* Mobile Hamburger Button - Always Visible */}
           <div className='md:hidden block'>
-            <IconButton onClick={toggleMobileMenu}>
+            <IconButton onClick={toggleMobileMenu}className=' z-[60]'>
               <MenuIcon className={`text-[19px] base:text-[22px] sm:text-[25px] text-slate-500`} />
             </IconButton>
           </div>
         </div>
       </nav>
+      )}
+      
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-[2000] bg-white transition-all duration-300 transform ${isMobileMenuOpen ? 'translate-y-0' : 'translate-y-[-100vh]'} `}>
+      <div className={`fixed inset-0  bg-white transition-all duration-300 transform  ${isMobileMenuOpen ? 'translate-y-0 z-[49]' : 'translate-y-[-100vh] pointer-events-none z-[-1]'} `}>
         <div className='flex justify-between items-center p-10 section-x'>
           <Link href={APP_ROUTES.HOME} onClick={closeMobileMenu}>
             <Image alt='Logo' src={ASSETS.LOGO} className='w-full max-h-20' />

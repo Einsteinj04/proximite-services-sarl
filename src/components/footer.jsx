@@ -277,7 +277,7 @@ const Footer = () => {
                     backgroundColor: '#f59e0b'
                   },
                   whiteSpace: 'nowrap',
-                  px: 3
+                  px: {sm: 6, xs:3}
                 }}
               >
                 Subscribe
