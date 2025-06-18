@@ -178,17 +178,26 @@ const cards = [
 
 const HeroSection = () => {
     return (
-      <section className=' flex flex-col items-start justify-center relative section-x'>
-      <div className='absolute h-[96vh] w-full top-0 right-0 bottom-0 left-0 aspect-[16/9]'>
-       <Image
-          alt="Welcome to Proximite Services"
+    //   <section className=' flex flex-col items-start justify-center relative section-x'>
+    //   <div className='absolute h-[96vh] w-full top-0 right-0 bottom-0 left-0 aspect-[16/9]'>
+    //    <Image
+    //       alt="Welcome to Proximite Services"
+    //       src={ASSETS.HOME_HERO}
+    //       className=" object-cover h-[96vh] w-full md:object-top object-center"
+    //     />
+    // </div>
+    <section className='relative h-[96vh] w-full '>
+        {/* Remove all absolute positioning wrappers */}
+          <Image
+          alt="Hero Image"
           src={ASSETS.HOME_HERO}
-          className=" object-cover h-[96vh] w-full md:object-top object-center"
+          sizes="100vw"
+          className="object-cover h-[96vh] object-center md:object-top absolute "
+          unoptimized={true} // ← THIS IS THE KEY LINE
         />
-    </div>
     <div className='absolute top-0 right-0 bottom-0 left-0 h-full min-h-[96vh] z-[3] inset-0 bg-[linear-gradient(#00000080,#00000080)]'></div>
-    <section className='z-10  flex flex-col justify-center relative  w-full h-[96vh]  text-white  items-center '>
-      <div className=' relative sm:top-[10%]  flex  gap-y-4 flex-col items-center'>
+    <section className='z-10  flex flex-col justify-center relative  w-full h-[96vh]  text-white  items-center section-x'>
+      <div className=' relative sm:top-[10%]  flex  gap-y-4 flex-col items-center '>
               <div className='sm:text-6xl text-5xl text-center font-medium'>Let's Make Your Best Trip Ever</div>
               <p className='text-slate-300 sm:text-[20px] ; max-w-2xl text-center  mx-auto  text-[18px]'>Plan and book your perfect trip with expert advice. travel tips, destination information and inspiration from us</p>
               <div className='w-full flex justify-center h-[60px] items-center'>
