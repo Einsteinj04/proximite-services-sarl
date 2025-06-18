@@ -203,7 +203,7 @@ const HeroSection = () => {
               <div className='w-full flex justify-center h-[60px] items-center'>
               <Link className='font-metro-sans ' href={APP_ROUTES.CONTACT}>
                             <Button color='#fff' background='var(--primary)' className={`font-[700] font-metro-sans text-xs flex sm:gap-x-4 gap-x-2 max-w-[450px] mx-auto px-`}>
-                              <div className='text-xl '>BOOK NOW</div> <ArrowForwardIos/>
+                              <div className='text-xl px-4'>BOOK NOW</div> <ArrowForwardIos/>
                             </Button>
                           </Link>
               {/* </div> */}
