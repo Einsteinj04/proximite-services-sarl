@@ -246,7 +246,7 @@ const OurOffers = () =>{
 
 const Benefits = () => {
   return (
-    <section className='section-y section-x bg-blue-100 flex flex-col md:flex-row gap-8'>
+    <section className='section-y section-x bg-blue-100 flex flex-col md:flex-row gap-8 '>
       {/* Text Content */}
       <div className='flex flex-col gap-y-6 md:w-1/3 basis-3/4'>
         <div>

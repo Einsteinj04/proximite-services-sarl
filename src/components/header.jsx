@@ -80,10 +80,10 @@ const Header = () => {
   ];
 
   return (
-    <>
+    <section className='w-full mx-auto'>
       {/* Main Navigation Bar - Always Visible */}
       {!isMobileMenuOpen && (
-        <nav className={`fixed top-0 sm:w-[100%] w-[100%] transition-all mx-auto duration-300 z-[50] shadow-md left-1/2 -translate-x-1/2  ${isScrolled ? 'bg-red-500 shadow-md' : ''} 
+        <nav className={`fixed top-0 sm:w-[100%] w-[100%] transition-all mx-auto duration-300 z-[50] shadow-md left-1/2 max-w-[2000px] -translate-x-1/2  ${isScrolled ? 'shadow-md' : ''} 
           ${hideNavbar ? '-translate-y-full' : 'translate-y-0'}`}>
         {/* Your existing header content */}
         <div className='w-full md:flex items-center hidden p-4 bg-[#1d293d]'>
@@ -153,7 +153,7 @@ const Header = () => {
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
