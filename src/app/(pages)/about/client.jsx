@@ -18,7 +18,7 @@ import Link from 'next/link';
 const AboutPage = () => {
   // Team data
   const teamMembers = [
-    { id: 1, name: "Adélaïde Mensah", role: "Founder & CEO" },
+    { id: 1, name: "Annick Ukoha", role: "Founder & CEO" },
     { id: 2, name: "Koffi Agbessi", role: "Travel Consultant" },
     { id: 3, name: "Amina Touré", role: "Customer Relations" },
     { id: 4, name: "Jean-Luc Akpakpa", role: "Logistics Manager" }
@@ -33,15 +33,15 @@ const AboutPage = () => {
   ];
 
   return (
-    <>
+    <section className='md:pt-32 pt-22 '>
       <Head>
         <title>About Us | Proximite Services</title>
         <meta name="description" content="Discover our travel agency's story, mission, and the team dedicated to crafting your perfect journey" />
       </Head>
 
       {/* Hero Section */}
-      <section className="md:py-40 py-22 relative h-[70vh] min-h-[500px] bg-gradient-to-r from-blue-900 to-indigo-800 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+      <section className="relative h-[70vh] min-h-[500px] bg-gradient-to-r from-blue-900 to-indigo-800 overflow-hidden">
+        <div className="absolute inset-0 opacity-20 ">
           <svg viewBox="0 0 1000 500" className="w-full h-full">
             <path 
               d="M0,250 Q250,100 500,250 T1000,250" 
@@ -53,7 +53,7 @@ const AboutPage = () => {
           </svg>
         </div>
         
-        <div className="container mx-auto h-full flex items-center px-6 relative z-10">
+        <div className="container mx-auto h-full flex items-center px-6 relative z-10 ">
           <div className="max-w-2xl text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Crafting <span className="text-yellow-300">Exceptional</span> Travel Experiences
@@ -85,7 +85,7 @@ const AboutPage = () => {
               More Than Just Travel – We Create <span className="text-blue-600">Connections</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-12">
-              At Proximite Services, we believe travel should be transformative. Our mission is to design journeys that 
+              At Proximite Services sarl, we believe travel should be transformative. Our mission is to design journeys that 
               immerse you in local cultures, create meaningful encounters, and leave you with stories to last a lifetime. 
               We handle every detail so you can focus on the experience.
             </p>
@@ -151,8 +151,8 @@ const AboutPage = () => {
                 From Passion to Profession
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Founded in 2003 by Adélaïde Mensah, Proximite Services began as a small boutique agency in Cotonou. 
-                What started as a solo venture fueled by a passion for African tourism has grown into a team of 12 
+                Founded in 2012 by Annick Zonon Ukoha, Proximite Services Sarl began as a small travel agency in Cotonou, Benin Republic. 
+                What started as a solo venture fueled by a passion for Africa and World tourism has grown into a team of 12 
                 dedicated travel professionals serving clients across three continents.
               </p>
               
@@ -281,7 +281,7 @@ const AboutPage = () => {
               className="px-8 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition flex items-center justify-center"
             >
               <Phone className="mr-2" />
-              Call +229 63 30 23 05
+              Call (+22901) 97 13 35 34
             </Link>
             <Link 
               href="/tours" 
@@ -293,7 +293,7 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-    </>
+    </section>
   );
 };
 

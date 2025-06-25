@@ -35,7 +35,7 @@ const ToursPage = () => {
       description: "7-day immersion into Benin's rich history and traditions, visiting Ouidah, Abomey, and Ganvié",
       type: "Cultural",
       duration: "7 days",
-      price: "₦450,000",
+      price: "$250",
       rating: 4.8,
       image: "/cultural-tour.svg"
     },
@@ -45,7 +45,7 @@ const ToursPage = () => {
       description: "5-day beach retreat with visits to Lomé's markets and relaxing at Aneho beaches",
       type: "Beach",
       duration: "5 days",
-      price: "₦380,000",
+      price: "$380",
       rating: 4.5,
       image: "/beach-tour.svg"
     },
@@ -55,7 +55,7 @@ const ToursPage = () => {
       description: "10-day journey through Kakum National Park, Mole Game Reserve, and Cape Coast Castle",
       type: "Adventure",
       duration: "10 days",
-      price: "₦620,000",
+      price: "$620",
       rating: 4.9,
       image: "/adventure-tour.svg"
     },
@@ -65,7 +65,7 @@ const ToursPage = () => {
       description: "Premium 5-day tour of Lagos and Abuja with luxury accommodations and private transfers",
       type: "Business",
       duration: "5 days",
-      price: "₦850,000",
+      price: "$850",
       rating: 4.7,
       image: "/business-tour.svg"
     },
@@ -75,7 +75,7 @@ const ToursPage = () => {
       description: "8-day wildlife experience in W National Park with expert guides",
       type: "Safari",
       duration: "8 days",
-      price: "₦550,000",
+      price: "$550",
       rating: 4.6,
       image: "/safari-tour.svg"
     },
@@ -85,7 +85,7 @@ const ToursPage = () => {
       description: "6-day food tour through Abidjan's markets and cooking classes with local chefs",
       type: "Culinary",
       duration: "6 days",
-      price: "₦490,000",
+      price: "$490",
       rating: 4.4,
       image: "/culinary-tour.svg"
     }
@@ -100,14 +100,14 @@ const ToursPage = () => {
   ];
 
   return (
-    <>
+    <section className='md:pt-32 pt-22 '>
       <Head>
         <title>Tour Packages | Proximite Services</title>
         <meta name="description" content="Explore our curated collection of unforgettable travel experiences across West Africa and beyond" />
       </Head>
 
       {/* Hero Section */}
-      <section className="md:py-40 py-22 relative h-[60vh] min-h-[500px] bg-gradient-to-r from-blue-900 to-indigo-800 flex items-center">
+      <section className="relative h-[60vh] min-h-[500px] bg-gradient-to-r from-blue-900 to-indigo-800 flex items-center">
         <div className="absolute inset-0 opacity-20">
           <svg viewBox="0 0 1000 500" className="w-full h-full">
             <path 
@@ -304,7 +304,7 @@ const ToursPage = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Book With <span className="text-blue-600">Proximite Services</span>?
+              Why Book With <span className="text-blue-600">Proximite Services Sarl</span>?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We go beyond standard tours to deliver truly exceptional experiences
@@ -340,7 +340,7 @@ const ToursPage = () => {
           </div>
         </div>
       </section>
-    </>
+    </section>
   );
 };
 
