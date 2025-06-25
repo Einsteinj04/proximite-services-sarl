@@ -21,8 +21,7 @@ import {
 } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
-// import { motion } from 'framer-motion'
-import { motion } from 'framer-motion/dist/es/components/motion'
+import { motion } from 'framer-motion'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -199,10 +198,11 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex h-full flex-col justify-center text-center text-white">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+        {/* <motion.div  */}
+        <div
+          // initial={{ opacity: 0, y: 20 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 0.8 }}
           className="container mx-auto px-6"
         >
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
@@ -229,7 +229,8 @@ const HeroSection = () => {
               </Button>
             </Link>
           </div>
-        </motion.div>
+        {/* </motion.div> */}
+        </div>
 
         {/* Scrolling Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
@@ -374,9 +375,10 @@ const Benefits = () => {
 
             <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {benefitItems.map((item, index) => (
-                <motion.div
+                // <motion.div
+                <div
                   key={index}
-                  whileHover={{ scale: 1.02 }}
+                  // whileHover={{ scale: 1.02 }}
                   className="rounded-xl bg-white p-6 shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
@@ -384,7 +386,8 @@ const Benefits = () => {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900">{item.heading}</h3>
                   <p className="mt-2 text-gray-600">{item.text}</p>
-                </motion.div>
+                {/* </motion.div> */}
+                </div>
               ))}
             </div>
           </div>
