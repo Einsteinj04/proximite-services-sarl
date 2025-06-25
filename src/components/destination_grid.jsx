@@ -8,13 +8,12 @@ const DestinationGrid = ({ destinations }) => {
   return (
     <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {destinations.map((destination, index) => (
-        // <motion.div
-        <div
+        <motion.div
           key={destination.id}
-          // initial={{ opacity: 0, y: 20 }}
-          // whileInView={{ opacity: 1, y: 0 }}
-          // transition={{ duration: 0.5, delay: index * 0.1 }}
-          // viewport={{ once: true }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          viewport={{ once: true }}
           className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl"
         >
           <div className="relative h-64 overflow-hidden">
@@ -59,8 +58,7 @@ const DestinationGrid = ({ destinations }) => {
               </svg>
             </Link>
           </div>
-        {/* </motion.div> */}
-        </div>
+        </motion.div>
       ))}
     </div>
   );

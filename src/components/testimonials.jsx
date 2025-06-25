@@ -28,13 +28,12 @@ const Testimonials = ({ testimonials }) => {
     <div className="mt-16">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial, index) => (
-          // <motion.div
-          <div
+          <motion.div
             key={testimonial.id}
-            // initial={{ opacity: 0, y: 20 }}
-            // whileInView={{ opacity: 1, y: 0 }}
-            // transition={{ duration: 0.5, delay: index * 0.1 }}
-            // viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
             className="overflow-hidden rounded-xl bg-white/10 p-6 backdrop-blur-sm"
           >
             <div className="flex items-center gap-4">
@@ -55,8 +54,7 @@ const Testimonials = ({ testimonials }) => {
               {renderStars(testimonial.rating)}
             </div>
             <p className="mt-4 text-blue-100">{testimonial.content}</p>
-          {/* </motion.div> */}
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
