@@ -106,8 +106,8 @@ const popularDestinations = [
   { id: 2, name: "Santorini, Greece", image: ASSETS.GREECE, price: "$1,800", rating: 4.9 },
   { id: 3, name: "Kyoto, Japan", image: ASSETS.TOKYO, price: "$2,100", rating: 4.7 },
   { id: 4, name: "Rome, Italy", image: ASSETS.ROME, price: "$1,500", rating: 4.6 },
-  { id: 5, name: "New York, USA", image: ASSETS.SWITZERLAND, price: "$1,900", rating: 4.5 },
-  { id: 6, name: "Cape Town, South Africa", image: ASSETS.FRANCE, price: "$1,600", rating: 4.8 },
+  { id: 5, name: "New York, USA", image: ASSETS.USA, price: "$1,900", rating: 4.5 },
+  { id: 6, name: "Cape Town, South Africa", image: ASSETS.CAPETOWN, price: "$1,600", rating: 4.8 },
 ];
 
 const testimonials = [
@@ -117,23 +117,23 @@ const testimonials = [
     role: "Frequent Traveler",
     content: "Proximite Services made our anniversary trip unforgettable. Every detail was perfectly arranged, and their local recommendations were spot on!",
     rating: 5,
-    image: ASSETS.LOGO
+    image: ASSETS.AVATAR1
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Business Traveler",
-    content: "As someone who travels monthly for work, I appreciate how Proximite handles all the logistics. Their corporate travel program saves me hours of planning.",
+    name: "The Okafor's",
+    role: "Family Vacationers",
+    content: "Traveling with three kids can be stressful, but Proximite planned the perfect family-friendly itinerary. The kids still talk about our safari adventure!",
     rating: 4,
-    image: ASSETS.LOGO
+    image: ASSETS.AVATAR2
   },
   {
     id: 3,
-    name: "The Williams Family",
-    role: "Family Vacationers",
-    content: "Traveling with three kids can be stressful, but Proximite planned the perfect family-friendly itinerary. The kids still talk about our safari adventure!",
+    name: "Michael Bush",
+    role: "Business Traveler",
+    content: "As someone who travels monthly for work, I appreciate how Proximite handles all the logistics. Their corporate travel program saves me hours of planning.",
     rating: 5,
-    image: ASSETS.LOGO
+    image: ASSETS.AVATAR3
   }
 ];
 
@@ -141,12 +141,12 @@ const benefitItems = [
   {
     icon: <PeopleIcon className="text-blue-600" />,
     heading: 'Personalized Attention',
-    text: 'We design care plans around your family\'s unique routines and preferences, with dedicated support whenever you need it.'
+    text: 'We design care plans around you or your family\'s unique routines and preferences, with dedicated support whenever you need it.'
   },
   {
     icon: <SecurityIcon className="text-green-600" />,
     heading: 'Trusted Caregivers',
-    text: 'Every team member is thoroughly vetted, trained, and committed to treating your loved ones like family.'
+    text: 'Every team member is thoroughly vetted, trained, and committed to treating you and your loved ones like family.'
   },
   {
     icon: <GlobeIcon className="text-purple-600" />,
@@ -242,58 +242,6 @@ const HeroSection = () => {
     </section>
   );
 };
-
-// const SearchBar = () => {
-//   return (
-//     <div className="container mx-auto -mt-20 z-20 relative px-6">
-//       <div className="rounded-xl bg-white p-6 shadow-2xl shadow-black/20">
-//         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-//           <div className="space-y-2">
-//             <label className="block text-sm font-medium text-gray-700">Destination</label>
-//             <div className="relative">
-//               <PinIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//               <input 
-//                 type="text" 
-//                 placeholder="Where to?" 
-//                 className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-//               />
-//             </div>
-//           </div>
-          
-//           <div className="space-y-2">
-//             <label className="block text-sm font-medium text-gray-700">Check In - Check Out</label>
-//             <div className="relative">
-//               <ClockIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//               <input 
-//                 type="text" 
-//                 placeholder="Select dates" 
-//                 className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-//               />
-//             </div>
-//           </div>
-          
-//           <div className="space-y-2">
-//             <label className="block text-sm font-medium text-gray-700">Travelers</label>
-//             <div className="relative">
-//               <PeopleIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//               <input 
-//                 type="text" 
-//                 placeholder="2 Adults" 
-//                 className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-//               />
-//             </div>
-//           </div>
-          
-//           <div className="flex items-end">
-//             <button className="w-full rounded-lg bg-blue-600 py-3 px-6 text-lg font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-//               Search
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 
 
