@@ -1,18 +1,31 @@
 'use client'
-import React, {useRef} from 'react'
+import React, { useState } from 'react'
 import { APP_ROUTES, ASSETS } from "@/config";
-import { Image, Button, BulletPoints, Card, BenefitCards, PremiumTourCarousel } from "@/components";
+import { Image, Button, BulletPoints, Card, BenefitCards, PremiumTourCarousel, Testimonials, Newsletter, DestinationGrid } from "@/components";
 import Link from 'next/link';
-import { ArrowForwardIos, FlightTakeoff, DirectionsCar, House, PriceChange, EnhancedEncryption, Public, People} from "@mui/icons-material";
-import { FiArrowRight, FiArrowLeft, FiMapPin, FiClock, FiStar } from 'react-icons/fi';
 import Masonry from '@mui/lab/Masonry';
+import { useRouter } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
+import { 
+  ArrowForward as ArrowForwardIcon,
+  FlightTakeoff as FlightIcon,
+  DirectionsCar as CarIcon,
+  House as HotelIcon,
+  PriceChange as PriceIcon,
+  EnhancedEncryption as SecurityIcon,
+  Public as GlobeIcon,
+  People as PeopleIcon,
+  Star as StarIcon,
+  AccessTime as ClockIcon,
+  Place as PinIcon
+} from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
 import { motion } from 'framer-motion'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import 'swiper/css/effect-fade'
 
 const luxuryTours = [
   {
@@ -25,7 +38,8 @@ const luxuryTours = [
     duration: 7,
     rating: 4.9,
     isBestSeller: true,
-    type: "beach"
+    type: "beach",
+    image: ASSETS.MALDIVES
   },
   {
     id: 2,
@@ -37,7 +51,8 @@ const luxuryTours = [
     duration: 5,
     rating: 4.8,
     isBestSeller: false,
-    type: "mountain"
+    type: "mountain",
+    image: ASSETS.SWISS
   },
   {
     id: 3,
@@ -46,87 +61,39 @@ const luxuryTours = [
     price: 2100,
     originalPrice: 2500,
     discount: 16,
-      duration: 4,
-      rating: 4.7,
-      isBestSeller: true,
-      type: "city"
-    },
-{
-      id: 4,
-      title: "Romantic Paris City Escape",
-      location: "Paris, France",
-      price: 2100,
-      originalPrice: 2500,
-      discount: 16,
-        duration: 4,
-        rating: 4.7,
-        isBestSeller: true,
-        type: "city"
-      },
-      {
-        id: 5,
-        title: "Romantic Paris City Escape",
-        location: "Paris, France",
-        price: 2100,
-        originalPrice: 2500,
-        discount: 16,
-          duration: 4,
-          rating: 4.7,
-          isBestSeller: true,
-          type: "city"
-        },
-  ]
-// const optionsCard = [
-//   {
-//     id: 1,
-//     image: ASSETS.GREECE,
-//     title: 'Beach Getaway',
-//     desc: 'Luxury beachfront villas with private pools'
-//   },
-//   {
-//     id: 2,
-//     image: ASSETS.CHINA,
-//     title: 'Mountain Retreat',
-//     desc: 'Cozy cabins with stunning alpine views'
-//   },{
-//     id: 3,
-//     image: ASSETS.GREECE,
-//     title: 'Beach Getaway',
-//     desc: 'Luxury beachfront villas with private pools'
-//   },
-//   {
-//     id: 4,
-//     image: ASSETS.CHINA,
-//     title: 'Mountain Retreat',
-//     desc: 'Cozy cabins with stunning alpine views'
-//   },
-//   {
-//     id: 5,
-//     image: ASSETS.GREECE,
-//     title: 'Beach Getaway',
-//     desc: 'Luxury beachfront villas with private pools'
-//   },
-//   {
-//     id: 6,
-//     image: ASSETS.GREECE,
-//     title: 'Beach Getaway',
-//     desc: 'Luxury beachfront villas with private pools'
-//   },
-//    {
-//     id: 7,
-//     image: ASSETS.GREECE,
-//     title: 'Beach Getaway',
-//     desc: 'Luxury beachfront villas with private pools'
-//   },
-//    {
-//     id: 8,
-//     image: ASSETS.GREECE,
-//     title: 'Beach Getaway',
-//     desc: 'Luxury beachfront villas with private pools'
-//   },
-  
-//   // Add 4+ more items for smooth looping
-// ];
+    duration: 4,
+    rating: 4.7,
+    isBestSeller: true,
+    type: "city",
+    image: ASSETS.PARIS
+  },
+  {
+    id: 4,
+    title: "Safari Adventure in Kenya",
+    location: "Kenya",
+    price: 2500,
+    originalPrice: 2900,
+    discount: 14,
+    duration: 6,
+    rating: 4.8,
+    isBestSeller: true,
+    type: "adventure",
+    image: ASSETS.KENYA
+  },
+  {
+    id: 5,
+    title: "Cultural Journey Through Japan",
+    location: "Japan",
+    price: 3500,
+    originalPrice: 4000,
+    discount: 12,
+    duration: 10,
+    rating: 4.9,
+    isBestSeller: false,
+    type: "cultural",
+    image: ASSETS.JAPAN
+  },
+];
 const imageItems = [
   { id: 1, img: ASSETS.PARIS, title : 'Paris', height: '500px' },  // Wider image
   { id: 2, img: ASSETS.GREECE, title: 'Greece', height: '250px' }, // Taller image
@@ -134,61 +101,93 @@ const imageItems = [
   { id: 4, img: ASSETS.LONDON, title: 'London', height: '250px' },   // 3
   // Add more images with varying aspect ratios
 ];
+const popularDestinations = [
+  { id: 1, name: "Bali, Indonesia", image: ASSETS.BALI, price: "$1,200", rating: 4.8 },
+  { id: 2, name: "Santorini, Greece", image: ASSETS.GREECE, price: "$1,800", rating: 4.9 },
+  { id: 3, name: "Kyoto, Japan", image: ASSETS.TOKYO, price: "$2,100", rating: 4.7 },
+  { id: 4, name: "Rome, Italy", image: ASSETS.ROME, price: "$1,500", rating: 4.6 },
+  { id: 5, name: "New York, USA", image: ASSETS.SWITZERLAND, price: "$1,900", rating: 4.5 },
+  { id: 6, name: "Cape Town, South Africa", image: ASSETS.FRANCE, price: "$1,600", rating: 4.8 },
+];
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    role: "Frequent Traveler",
+    content: "Proximite Services made our anniversary trip unforgettable. Every detail was perfectly arranged, and their local recommendations were spot on!",
+    rating: 5,
+    image: ASSETS.LOGO
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    role: "Business Traveler",
+    content: "As someone who travels monthly for work, I appreciate how Proximite handles all the logistics. Their corporate travel program saves me hours of planning.",
+    rating: 4,
+    image: ASSETS.LOGO
+  },
+  {
+    id: 3,
+    name: "The Williams Family",
+    role: "Family Vacationers",
+    content: "Traveling with three kids can be stressful, but Proximite planned the perfect family-friendly itinerary. The kids still talk about our safari adventure!",
+    rating: 5,
+    image: ASSETS.LOGO
+  }
+];
+
 const benefitItems = [
   {
-    icon: <People/>,
-    heading:'Personalized Attention',
-    text:'We design care plans around your family’s unique routines and preferences, with dedicated support whenever you need it.'
+    icon: <PeopleIcon className="text-blue-600" />,
+    heading: 'Personalized Attention',
+    text: 'We design care plans around your family\'s unique routines and preferences, with dedicated support whenever you need it.'
   },
   {
-    icon: <EnhancedEncryption/>,
-    heading:'Trusted Caregivers',
-    text:'Every team member is thoroughly vetted, trained, and committed to treating your loved ones like family.'
+    icon: <SecurityIcon className="text-green-600" />,
+    heading: 'Trusted Caregivers',
+    text: 'Every team member is thoroughly vetted, trained, and committed to treating your loved ones like family.'
   },
   {
-    icon: <Public/>,
-    heading:'Flexible Options',
-    text:'From occasional help to 24/7 care, we adapt to your schedule—even for last-minute requests.'
+    icon: <GlobeIcon className="text-purple-600" />,
+    heading: 'Flexible Options',
+    text: 'From occasional help to 24/7 care, we adapt to your schedule—even for last-minute requests.'
   },
   {
-    icon: <PriceChange/>,
-    heading:'Honest Pricing',
-    text:'Clear, upfront costs with no hidden fees, so you can focus on what matters most.'
+    icon: <PriceIcon className="text-amber-600" />,
+    heading: 'Honest Pricing',
+    text: 'Clear, upfront costs with no hidden fees, so you can focus on what matters most.'
   },
-
-]
+];
 
 const cards = [
-  { icon: <FlightTakeoff   sx={{ fontSize: '34px' }}/>,
-    service:'Flight Booking',
+  { 
+    icon: <FlightIcon className="text-blue-600" fontSize="large" />,
+    service: 'Flight Booking',
     amount: '120,000',
-    image:ASSETS.FLIGHT
+    image: ASSETS.FLIGHT,
+    description: 'Find the best deals on flights worldwide with our exclusive airline partnerships.'
   },
-  { icon: <DirectionsCar sx={{ fontSize: '34px' }}/>,
-    service:'Car Rental',
+  { 
+    icon: <CarIcon className="text-green-600" fontSize="large" />,
+    service: 'Car Rental',
     amount: '80,000',
-    image:ASSETS.CAR
+    image: ASSETS.CAR,
+    description: 'Premium vehicles at competitive rates with flexible rental options.'
   },
-  { icon: <House sx={{ fontSize: '34px' }}/>,
-    service:'Hotel Booking',
+  { 
+    icon: <HotelIcon className="text-amber-600" fontSize="large" />,
+    service: 'Hotel Booking',
     amount: '65,000',
-    image:ASSETS.HOTEL
+    image: ASSETS.HOTEL,
+    description: 'Luxury accommodations handpicked for comfort and exceptional service.'
   }
-]
+];
 
 const HeroSection = () => {
-    return (
-    //   <section className=' flex flex-col items-start justify-center relative section-x'>
-    //   <div className='absolute h-[96vh] w-full top-0 right-0 bottom-0 left-0 aspect-[16/9]'>
-    //    <Image
-    //       alt="Welcome to Proximite Services"
-    //       src={ASSETS.HOME_HERO}
-    //       className=" object-cover h-[96vh] w-full md:object-top object-center"
-    //     />
-    // </div>
-    <section className='relative h-[96vh] w-full '>
-        {/* Remove all absolute positioning wrappers */}
-          <Image
+  return (
+    <section className="relative h-[96vh] w-full">
+        <Image
           alt="Hero Image"
           src={ASSETS.HOME_HERO}
           sizes="100vw"
@@ -196,77 +195,252 @@ const HeroSection = () => {
           unoptimized={true} // ← THIS IS THE KEY LINE
         />
     <div className='absolute top-0 right-0 bottom-0 left-0 h-full min-h-[96vh] z-[3] inset-0 bg-[linear-gradient(#00000080,#00000080)]'></div>
-    <section className='z-10  flex flex-col justify-center relative  w-full h-[96vh]  text-white  items-center section-x'>
-      <div className=' relative sm:top-[10%]  flex  gap-y-4 flex-col items-center '>
-              <div className='sm:text-6xl text-5xl text-center font-medium'>Let's Make Your Best Trip Ever</div>
-              <p className='text-slate-300 sm:text-[20px] ; max-w-2xl text-center  mx-auto  text-[18px]'>Plan and book your perfect trip with expert advice. travel tips, destination information and inspiration from us</p>
-              <div className='w-full flex justify-center h-[60px] items-center'>
-              <Link className='font-metro-sans ' href={APP_ROUTES.CONTACT}>
-                            <Button color='#fff' background='var(--primary)' className={`font-[700] font-metro-sans text-xs flex sm:gap-x-4 gap-x-2 max-w-[450px] mx-auto px-`}>
-                              <div className='text-xl px-4'>BOOK NOW</div> <ArrowForwardIos/>
-                            </Button>
-                          </Link>
-              {/* </div> */}
-              </div>
-             
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex h-full flex-col justify-center text-center text-white">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="container mx-auto px-6"
+        >
+          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            Discover Your <span className="text-blue-400">Perfect</span> Journey
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-xl text-gray-300 sm:text-2xl">
+            Crafting unforgettable travel experiences tailored just for you
+          </p>
+          
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link href={APP_ROUTES.TOURS}>
+              <Button 
+                className="flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold transition-all hover:bg-blue-600"
+                background = 'var(--primary)'
+              >
+                Explore Destinations
+                <ArrowForwardIcon />
+              </Button>
+            </Link>
+            
+            <Link href={APP_ROUTES.ABOUT}>
+              <Button className="flex items-center gap-2 rounded-full border-2 border-red-500 bg-transparent px-8 py-4 text-lg font-semibold text-slate-600 hover:border-[var(--primary)] hover:border-2 hover:bg-red-500" background = 'white' color='#45556c'>
+                Learn About Us
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Scrolling Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="h-8 w-5 rounded-full border-2 border-white"
+          ></motion.div>
+        </div>
       </div>
     </section>
-    </section>
-    ) 
-}
+  );
+};
 
-const OurOffers = () =>{
+// const SearchBar = () => {
+//   return (
+//     <div className="container mx-auto -mt-20 z-20 relative px-6">
+//       <div className="rounded-xl bg-white p-6 shadow-2xl shadow-black/20">
+//         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+//           <div className="space-y-2">
+//             <label className="block text-sm font-medium text-gray-700">Destination</label>
+//             <div className="relative">
+//               <PinIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+//               <input 
+//                 type="text" 
+//                 placeholder="Where to?" 
+//                 className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+//               />
+//             </div>
+//           </div>
+          
+//           <div className="space-y-2">
+//             <label className="block text-sm font-medium text-gray-700">Check In - Check Out</label>
+//             <div className="relative">
+//               <ClockIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+//               <input 
+//                 type="text" 
+//                 placeholder="Select dates" 
+//                 className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+//               />
+//             </div>
+//           </div>
+          
+//           <div className="space-y-2">
+//             <label className="block text-sm font-medium text-gray-700">Travelers</label>
+//             <div className="relative">
+//               <PeopleIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+//               <input 
+//                 type="text" 
+//                 placeholder="2 Adults" 
+//                 className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+//               />
+//             </div>
+//           </div>
+          
+//           <div className="flex items-end">
+//             <button className="w-full rounded-lg bg-blue-600 py-3 px-6 text-lg font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+//               Search
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+
+
+const SearchBar = () => {
+  const [searchParams, setSearchParams] = useState({
+    destination: '',
+    dates: '',
+    travelers: ''
+  })
+  const router = useRouter()
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const queryString = new URLSearchParams({
+      destination: searchParams.destination,
+      dates: searchParams.dates,
+      travelers: searchParams.travelers
+    }).toString()
+    router.push(`${APP_ROUTES.CONTACT}?${queryString}`)
+  }
+
   return (
-    <section className='section-x section-y'>
-      <div className='flex md:flex-row flex-col sm:gap-y-10 gap-y-6 section-y'>
-        <div className='md:basis-1/3'>
-          <BulletPoints feature={'Our Offers'}/>
-        </div>
-        <div className='md:basis-2/3 flex md:justify-center'> 
-        <p className='text-[20px] text-slate-500 max-w-[500px] '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere pariatur, quae odit iure delectus totam doloremque consectetur dolores minima id Facere pariatur, quae odit iure !</p>
-        </div>
-      </div>
-
-
-
-      <div className="container mx-auto  py-12">
-      {/* Mobile: Single column, Desktop: 3 cards with perfect spacing */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {
-        cards.map((card,index)=>{
-          return(<Card icon= {card.icon} service={card.service} amount = {card.amount} image={card.image} key={index}/>)
-        })
-        }
+    <div className="container mx-auto -mt-20 z-20 relative px-6">
+      <div className="rounded-xl bg-white p-6 shadow-2xl shadow-black/20">
+        <form onSubmit={handleSearch}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Destination</label>
+              <div className="relative">
+                <PinIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input 
+                  type="text" 
+                  placeholder="Where to?" 
+                  className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  value={searchParams.destination}
+                  onChange={(e) => setSearchParams({...searchParams, destination: e.target.value})}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Check In - Check Out</label>
+              <div className="relative">
+                <ClockIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input 
+                  type="text" 
+                  placeholder="Select dates" 
+                  className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  value={searchParams.dates}
+                  onChange={(e) => setSearchParams({...searchParams, dates: e.target.value})}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Travelers</label>
+              <div className="relative">
+                <PeopleIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input 
+                  type="text" 
+                  placeholder="2 Adults" 
+                  className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  value={searchParams.travelers}
+                  onChange={(e) => setSearchParams({...searchParams, travelers: e.target.value})}
+                />
+              </div>
+            </div>
+            
+            <div className="flex items-end">
+              <button 
+                type="submit"
+                className="w-full rounded-lg bg-blue-600 py-3 px-6 text-lg font-semibold text-white transition hover:bg-blue-700 focus:outline-none cursor-pointer"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-      
-    </section>
   )
 }
 
+
+const OurOffers = () => {
+  return (
+    <section className="py-20">
+      <div className="container mx-auto px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* <BulletPoints feature="Our Services" /> */}
+          <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+            Everything You Need for <span className="text-blue-600">Seamless Travel</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            From flights to accommodations and local experiences, we provide comprehensive travel solutions tailored to your preferences.
+          </p>
+        </div>
+        <div className="container mx-auto  py-12">
+          {/* Mobile: Single column, Desktop: 3 cards with perfect spacing */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {
+            cards.map((card,index)=>{
+              return(<Card icon= {card.icon} service={card.service} amount = {card.amount} image={card.image} key={index}/>)
+            })
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Benefits = () => {
   return (
-    <section className='section-y section-x bg-blue-100 flex flex-col md:flex-row gap-8 '>
-      {/* Text Content */}
-      <div className='flex flex-col gap-y-6 md:w-1/3 basis-3/4'>
-        <div>
-          <BulletPoints feature={'Our Benefits'}/>
-        </div>
-        <div className='max-w-[500px]'>
-          <p className='text-slate-500 text-xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi vel incidunt numquam doloribus quos aperiam magni modi nesciunt cum dicta.</p>
-        </div>
+    <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-20">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col gap-12 md:flex-row">
+          {/* Text Content */}
+          <div className="md:w-1/2">
+            <div className="max-w-md">
+              {/* <BulletPoints feature="Why Choose Us" /> */}
+              <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+                The <span className="text-blue-600">Proximite</span> Difference
+              </h2>
+              <p className="mt-6 text-lg text-gray-600">
+                We go beyond standard travel services to deliver exceptional experiences with personal touches that make all the difference.
+              </p>
+            </div>
 
-        <div className="grid md:grid-cols-2 grid-cols-1 md:gap-2 gap-10">
-          {benefitItems.map((items, index)=>{
-            return(
-              <BenefitCards icon={items.icon} heading={items.heading} text={items.text} key={index}/>
-            )
-          })}
-        </div>
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {benefitItems.map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  className="rounded-xl bg-white p-6 shadow-sm transition-all hover:shadow-md"
+                >
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">{item.heading}</h3>
+                  <p className="mt-2 text-gray-600">{item.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-      </div>
-
-      {/* Masonry Grid */}
+                {/* Masonry Grid */}
       <div className='md:w-2/3 basis-2/4'>
         <Box sx={{ width: '100%' }}>
           <Masonry 
@@ -335,133 +509,199 @@ const Benefits = () => {
           </Masonry>
         </Box>
       </div>
+
+          {/* Image Grid
+          <div className="md:w-1/2">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative h-64 overflow-hidden rounded-xl">
+                <Image
+                  src={ASSETS.PARIS}
+                  alt="Paris"
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-xl font-semibold">Paris</h3>
+                  <p className="flex items-center">
+                    <StarIcon className="mr-1 text-yellow-400" />
+                    <span>4.8</span>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="relative h-64 overflow-hidden rounded-xl">
+                <Image
+                  src={ASSETS.GREECE}
+                  alt="Greece"
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-xl font-semibold">Greece</h3>
+                  <p className="flex items-center">
+                    <StarIcon className="mr-1 text-yellow-400" />
+                    <span>4.9</span>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="relative h-64 overflow-hidden rounded-xl">
+                <Image
+                  src={ASSETS.CHINA}
+                  alt="China"
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-xl font-semibold">China</h3>
+                  <p className="flex items-center">
+                    <StarIcon className="mr-1 text-yellow-400" />
+                    <span>4.7</span>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="relative h-64 overflow-hidden rounded-xl">
+                <Image
+                  src={ASSETS.LONDON}
+                  alt="London"
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-xl font-semibold">London</h3>
+                  <p className="flex items-center">
+                    <StarIcon className="mr-1 text-yellow-400" />
+                    <span>4.6</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> */}
+        </div>
+      </div>
     </section>
-  )
-}
-const Carousel = () => {
+  );
+};
+
+const PremiumTours = () => {
   return (
-    <section className="py-16 px-4 section-x section-y mx-auto">
-      <div className="text-center mb-12">
-        <span className="text-sm uppercase tracking-widest text-amber-500 font-medium">Premium Getaways</span>
-        {/* <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-          Discover Your Dream Destination
-        </h2> */}
-         <div className='section-y w-full flex justify-center'>
-          <BulletPoints feature={'Discover Your Dream Destination'} position='center'/>
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* <BulletPoints feature="Premium Tours" position="center" /> */}
+          <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+            Curated <span className="text-blue-600">Luxury Experiences</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            Discover our handpicked collection of exclusive tours designed for discerning travelers.
+          </p>
         </div>
         
+        <PremiumTourCarousel tours={luxuryTours} />
+        
+        <div className="mt-12 text-center">
+          <Link href={APP_ROUTES.TOURS}>
+            <Button className="inline-flex items-center rounded-full border-2 border-blue-600 bg-white px-8 py-3 text-lg font-semibold text-blue-600 transition hover:bg-blue-50">
+              View All Tours
+              <ArrowForwardIcon className="ml-2" />
+            </Button>
+          </Link>
+        </div>
       </div>
-      <PremiumTourCarousel tours={luxuryTours} />
     </section>
-  )
-}
+  );
+};
 
-// const Carousel = () => {
-//   const swiperRef = useRef(null)
-//   return (
-//     <div className="relative py-12 px-4 md:pl-8 md:pr-32 section-x section-y"> {/* 👈 Right padding increased */}
-//     <BulletPoints feature={'Flights'} position={'center'}/>
-//     <div className='section-y'></div>
-//       <Swiper
-//         loop={true}
-//         pagination={{
-//           clickable: true,
-//           el: '.custom-pagination',
-//           dynamicBullets: false,
-//           bulletClass: 'swiper-pagination-bullet', // Required for custom styling
-//           bulletActiveClass: 'swiper-pagination-bullet-active'
-//         }}
-//         modules={[Navigation, Pagination, Autoplay]} // Ensure Pagination is included
-//         slidesPerView={'auto'}
-//         loopAdditionalSlides={1}
-//         spaceBetween={24}
-//         centeredSlides={false} // 👈 Disable centering
-//         navigation={{
-//           nextEl: '.custom-next',
-//           prevEl: '.custom-prev',
-//         }}
-//         onSwiper={(swiper) => {
-//                     swiperRef.current = swiper;
-//                   }}
-//         breakpoints={{
-//           0: {
-//             slidesPerView: 1,
-//             spaceBetween: 16,
-//             centeredSlides: true // 👈 Center on mobile
-//           },
-//           768: {
-//             slidesPerView: 2.5, // 👈 Shows 1 full + 20% of next
-//             spaceBetween: 24,
-//             centeredSlides: false
-//           },
-//           1024: {
-//             slidesPerView: 2.7, // 👈 Shows 1 full + 80% of next
-//           }
-//         }}
-//         className="" // 👈 Allows partial cards to show
-//       >
-//         {optionsCard.map((card) => (
-//           <SwiperSlide 
-//             key={card.id} 
-//             // className="!w-[85vw] md:!w-[45vw] lg:!w-[35vw]" // 👈 Responsive widths
-//           >
-//             {/* Your card content */}
-//             <motion.div 
-//               whileHover={{ y: -8 }}
-//               // className="bg-white rounded-xl shadow-lg overflow-hidden w-full h-[400px] flex flex-col justify-center"
-//               className='bg-white shadow-lg h-[400px] flex flex-col overflow-hidden justify-center border-slate-400 border-1 p-4'
-//             >
-//               <div className="relative h-48 w-full bg-slate-500 max-w-[768px]">
-//                 {/* <p className='text-white '>{card.id}</p> */}
-//                 <Image
-//                   src={card.image}
-//                   alt={card.title}
-//                   className="object-cover h-48 w-full"
-//                   // sizes="(max-width: 768px) 100vw, 50vw"
-//                 />
-//               </div>
-//               <div className="p-6 flex-1 flex flex-col"><h3 className="text-xl font-bold text-gray-900">{card.title}</h3>
-//                 <p className="text-gray-600 mt-2 flex-1">{card.description}</p>
-//                 {/* <button className="mt-4 px-4 py-2 bg-primary text-white rounded-lg self-start hover:bg-primary-dark transition-colors text-red-400">
-//                   Book Now
-//                 </button> */}
-//               </div>
-//             </motion.div>
-//           </SwiperSlide>
-//         ))}
-//       </Swiper>
+const PopularDestinations = () => {
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* <BulletPoints feature="Explore" position="center" /> */}
+          <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+            Popular <span className="text-blue-600">Destinations</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            Discover the world's most captivating places to visit on your next adventure.
+          </p>
+        </div>
+        
+        <DestinationGrid destinations={popularDestinations} />
+      </div>
+    </section>
+  );
+};
 
-//       {/* Right-only navigation */}
-//       {/* <button className="custom-next absolute right-8 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-50 transition-colors"> */}
-//       <button 
-//         onClick={() => swiperRef.current?.slidePrev()} // 👈 Now works in JS
-//         className="custom-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-50 transition-colors"
-//       >
-//         ←
-//       </button>
-//       <button 
-//         onClick={() => swiperRef.current?.slideNext()}
-//         className="custom-next absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md hidden md:flex items-center justify-center hover:bg-gray-50 transition-colors"
-//       >
-//         →
-//       </button>
+const TestimonialSection = () => {
+  return (
+    <section className="py-20 bg-gradient-to-r from-blue-900 to-indigo-800 text-white">
+      <div className="container mx-auto px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* <BulletPoints feature="Testimonials" position="center" light /> */}
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
+            What Our <span className="text-blue-300">Travelers Say</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-blue-100">
+            Hear from our satisfied customers about their exceptional travel experiences.
+          </p>
+        </div>
+        
+        <Testimonials testimonials={testimonials} />
+      </div>
+    </section>
+  );
+};
 
-//       {/* Mobile dots */}
-//       <div className='h-8  flex justify-center items-center'></div>
-//       <div className="custom-pagination hidden" />
-//     </div>
-//   )
-// }
+const NewsletterSection = () => {
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white shadow-xl md:p-12">
+          <div className="flex flex-col items-center justify-between md:flex-row">
+            <div className="mb-8 md:mb-0 md:max-w-lg">
+              <h2 className="text-3xl font-bold sm:text-4xl">Get Travel Inspiration</h2>
+              <p className="mt-4 text-lg text-blue-100">
+                Subscribe to our newsletter for exclusive deals, travel tips, and destination inspiration.
+              </p>
+            </div>
+            
+            <div className="w-full md:w-auto">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-white placeholder-blue-200 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/50"
+                />
+                <button className="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition hover:bg-gray-100">
+                  Subscribe
+                </button>
+              </div>
+              <p className="mt-3 text-sm text-blue-200">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
+const HomePage = () => {
+  return (
+    <div className="overflow-hidden">
+      <HeroSection />
+      <SearchBar />
+      <OurOffers />
+      <Benefits />
+      <PremiumTours />
+      <PopularDestinations />
+      <TestimonialSection />
+      <NewsletterSection />
+    </div>
+  );
+};
 
-const Client = () => {
-  return (<div className='w-full h-full'>
-    <HeroSection/>
-    <OurOffers/>
-    <Benefits/>
-    <Carousel/>
-  </div>
-  )
-}
+export default HomePage;
 
-export default Client;
