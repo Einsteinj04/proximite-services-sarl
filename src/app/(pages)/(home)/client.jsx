@@ -21,7 +21,8 @@ import {
 } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
+import { motion } from 'framer-motion/dist/es/components/motion'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
