@@ -125,7 +125,7 @@ const ToursPage = () => {
             Discover <span className="text-yellow-300">Extraordinary</span> Journeys
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-            Handcrafted tours designed to immerse you in authentic experiences across West Africa
+            Handcrafted tours designed to immerse you in authentic experiences across the World
           </p>
           
           <div className="max-w-2xl mx-auto relative">

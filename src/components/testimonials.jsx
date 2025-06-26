@@ -1,8 +1,8 @@
 import React from 'react';
 import { Star as StarIcon, StarHalf as StarHalfIcon } from '@mui/icons-material';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-
+// import { motion } from 'framer-motion';
+import { motion } from "framer-motion/dist/framer-motion";
 const Testimonials = ({ testimonials }) => {
   const renderStars = (rating) => {
     const stars = [];
