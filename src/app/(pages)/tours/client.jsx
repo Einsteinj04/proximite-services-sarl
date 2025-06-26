@@ -129,16 +129,16 @@ const ToursPage = () => {
           </p>
           
           <div className="max-w-2xl mx-auto relative">
-            <div className="flex items-center bg-white rounded-full px-4 py-2 shadow-lg">
+            <div className="flex items-center bg-white rounded-full px-4 py-2 shadow-lg w-full">
               <Search className="text-gray-400 mr-2" />
               <input 
                 type="text" 
                 placeholder="Search destinations, tours, or experiences..." 
                 className="flex-grow outline-none text-gray-700 bg-transparent"
               />
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+              {/*<button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition relative w-full">
                 Search
-              </button>
+              </button>*/}
             </div>
           </div>
         </div>
@@ -243,7 +243,7 @@ const ToursPage = () => {
           </div>
           
           {/* Pagination */}
-          <div className="mt-16 flex justify-center">
+          {/*<div className="mt-16 flex justify-center">
             <nav className="flex items-center space-x-2">
               <button className="px-4 py-2 border rounded-lg hover:bg-gray-100">
                 Previous
@@ -265,7 +265,7 @@ const ToursPage = () => {
                 Next
               </button>
             </nav>
-          </div>
+          </div>*/}
         </div>
       </section>
 
