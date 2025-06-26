@@ -1,3 +1,4 @@
+'use client';
 const BenefitCards = ({icon, heading, text})=>{
   return(
     <div className=' flex flex-col gap-x-2'>

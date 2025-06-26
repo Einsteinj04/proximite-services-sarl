@@ -21,7 +21,8 @@ import {
 } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -303,7 +304,7 @@ const SearchBar = () => {
                 <PeopleIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input 
                   type="text" 
-                  placeholder="2 Adults" 
+                  placeholder="No of persons (Ex: 2)" 
                   className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                   value={searchParams.travelers}
                   onChange={(e) => setSearchParams({...searchParams, travelers: e.target.value})}

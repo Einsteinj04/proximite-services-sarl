@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Send as SendIcon } from '@mui/icons-material';
 

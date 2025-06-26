@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import NextJsImage from 'next/image';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';

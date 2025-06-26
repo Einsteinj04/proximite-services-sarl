@@ -1,3 +1,4 @@
+'use client';
 const BulletPoints = ({ 
   feature, 
   position = 'start',  // Default to 'start' if not provided
