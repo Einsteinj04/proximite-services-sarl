@@ -362,8 +362,8 @@ const Benefits = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col gap-12 md:flex-row">
           {/* Text Content */}
-          <div className="md:w-1/2">
-            <div className="max-w-md">
+          <div className="">
+            <div className="max-w-md ">
               {/* <BulletPoints feature="Why Choose Us" /> */}
               <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                 The <span className="text-blue-600">Proximite</span> Difference
@@ -373,7 +373,7 @@ const Benefits = () => {
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 ">
               {benefitItems.map((item, index) => (
                 <motion.div
                   key={index}
@@ -391,11 +391,11 @@ const Benefits = () => {
           </div>
 
                 {/* Masonry Grid */}
-      <div className=' basis-2/4'>
+      <div className=''>
         <Box sx={{ width: '100%' }}>
           <Masonry 
             columns={{ xs: 1, sm: 2 }} 
-            spacing={2}
+            spacing={1}
             
           >
             {imageItems.map((item) => (

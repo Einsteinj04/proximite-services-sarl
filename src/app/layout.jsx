@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 
-const geistSans = Geist({
+const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen font-[400]">
-        <div className={`min-h-screen flex flex-col bg-white ${geistSans.className}`}>
+        <div className={`min-h-screen flex flex-col bg-white ${geist.variable}`}>
           {children}
         </div>
       </body>
