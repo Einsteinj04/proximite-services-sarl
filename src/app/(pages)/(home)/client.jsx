@@ -391,7 +391,7 @@ const Benefits = () => {
           </div>
 
                 {/* Masonry Grid */}
-      <div className='md:w-2/3 basis-2/4'>
+      <div className=' basis-2/4'>
         <Box sx={{ width: '100%' }}>
           <Masonry 
             columns={{ xs: 1, sm: 2 }} 
